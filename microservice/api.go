@@ -34,6 +34,9 @@ func (s *ApiServer) handleGetCatFact(w http.ResponseWriter, r *http.Request) {
 }
 
 func WriteJSON(w http.ResponseWriter, status int, v any) error{
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 	w.WriteHeader(status)
 	w.Header().Add("Content-type", "application/json")
 	return json.NewEncoder(w).Encode(v)
